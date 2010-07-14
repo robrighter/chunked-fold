@@ -1,10 +1,16 @@
 (function(){
-  exports.workQueue = function (thetask, initacc){
+  exports.WorkQueue = function (thetask, initacc){
     var jobs = {},
         workid = 1,
         task = thetask
         working = false,
-        acc = initacc;
+        acc = initacc,
+        eventEmitter = new require('events').EventEmitter();
+        
+    this.addListener = eventEmitter.addListener;
+    this.removeListener = eventEmitter.removeListener;
+    this.removeAllListeners  = eventEmitter.removeAllListeners;
+         
     this.push = function(value){
       jobs[''+(workid++)] = value;
       _kickoff();
@@ -41,7 +47,7 @@
 
 
 /*
-var test = new exports.workQueue(function(item,acc){
+var test = new exports.WorkQueue(function(item,acc){
   acc[''+item.count] = 'At item ' + item.count;
   console.log(require('sys').inspect(acc));
   if(item.count < 20){
