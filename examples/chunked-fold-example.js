@@ -19,7 +19,7 @@ example.addListener('data', function(data){
 });
 
 
-//Push items (chuncks) into the queue to be processed
+//Push items (chunks) into the queue to be processed
 example.push({ 'count' : 1});
 
 

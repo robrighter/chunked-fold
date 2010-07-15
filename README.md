@@ -66,7 +66,7 @@ Add a listener to be notified when the accumulation changes for any key value
 	});
 
 
-Push items (chuncks) into the queue to be processed through the MapReduce
+Push items (chunks) into the queue to be processed through the MapReduce
 
 	for(var i=0; i<20; i++){
 	  test.push({ 'count' : 1});
