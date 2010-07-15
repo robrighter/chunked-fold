@@ -5,8 +5,8 @@ ChunkedFold is a simple object for folding/reducing a list that is constantly be
 
 Create a ChunkedFold object and pass it 2 params:
 
- 1. The Fold/Reduce Function, which takes an iteration value and the accumulator and returns the new accumulated value
- 2. The initial value for the accumulator
+  1. The Fold/Reduce Function, which takes an iteration value and the accumulator and returns the new accumulated value
+  2. The initial value for the accumulator
 
 
 
@@ -42,9 +42,9 @@ at any time by using getAccumulator
 
 Create a ChunkedMapReduce object and pass it 3 params:
 
-1. The Map Function, which returns an array of explicit key value items that go into the reduce queue
-2. The Reduce Function, which takes a iteration value and the accumulator and returns the new accumulated value
-3. The initial value for the accumulator
+  1. The Map Function, which returns an array of explicit key value items that go into the reduce queue
+  2. The Reduce Function, which takes a iteration value and the accumulator and returns the new accumulated value
+  3. The initial value for the accumulator
 
 
 	 
