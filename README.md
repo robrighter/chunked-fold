@@ -5,18 +5,17 @@ ChunkedFold is a simple object for folding/reducing a list that is constantly be
 
 Create a ChunkedFold object and pass it 2 params:
 
-  1. The Fold/Reduce Function, which takes an iteration value and the accumulator and returns the new accumulated value
-  2. The initial value for the accumulator
+(1) The Fold/Reduce Function, which takes an iteration value and the accumulator and returns the new accumulated value
 
+(2) The initial value for the accumulator
 
-
-var example = new ChunkedFold(function(item,acc){
-  acc[''+item.count] = 'At item ' + item.count;
-  if(item.count < 20){
-     setTimeout(function(){example.push({ 'count' : (item.count+1)});}, 1000); 
-  }
-  return acc;
-}, {});
+	var example = new ChunkedFold(function(item,acc){
+	  acc[''+item.count] = 'At item ' + item.count;
+	  if(item.count < 20){
+	     setTimeout(function(){example.push({ 'count' : (item.count+1)});}, 1000); 
+	  }
+	  return acc;
+	}, {});
 
 
 Add a listener to be notified when the accumulation changes
@@ -42,10 +41,11 @@ at any time by using getAccumulator
 
 Create a ChunkedMapReduce object and pass it 3 params:
 
-  1. The Map Function, which returns an array of explicit key value items that go into the reduce queue
-  2. The Reduce Function, which takes a iteration value and the accumulator and returns the new accumulated value
-  3. The initial value for the accumulator
+(1) The Map Function, which returns an array of explicit key value items that go into the reduce queue
 
+(2) The Reduce Function, which takes a iteration value and the accumulator and returns the new accumulated value
+
+(3) The initial value for the accumulator
 
 	 
 	var test = new MapReduce(function(data){
