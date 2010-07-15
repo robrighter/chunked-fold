@@ -1,16 +1,16 @@
 (function(){
   exports.WorkQueue = function (thetask, initacc){
-    var jobs = {},
-        workid = 1,
-        task = thetask
-        working = false,
-        acc = initacc,
-        eventEmitter = new require('events').EventEmitter();
+    var jobs = {};
+    var workid = 1;
+    var task = thetask;
+    var working = false;
+    var events = require('events');
+    var eventEmitter = new events.EventEmitter();
         
-    this.addListener = eventEmitter.addListener;
-    this.removeListener = eventEmitter.removeListener;
-    this.removeAllListeners  = eventEmitter.removeAllListeners;
-         
+    this.addListener = function(){ return (eventEmitter.addListener).apply(eventEmitter, arguments); };
+    this.removeListener = function(){ return (eventEmitter.removeListener).apply(eventEmitter, arguments); };
+    this.removeAllListeners  = function(){ return (eventEmitter.removeAllListeners).apply(eventEmitter, arguments); };
+     
     this.push = function(value){
       jobs[''+(workid++)] = value;
       _kickoff();
@@ -27,12 +27,13 @@
           _dotask(key);
         }
       }
-      working = false
+      working = false;
     };
     var _dotask = function(jobkey){
       var value = jobs[jobkey];
-      acc = task(value, acc);
+      initacc = task(value, initacc);
       delete jobs[jobkey];
+      eventEmitter.emit('data', initacc);
     };
     var _countkeys = function() {
       var toreturn = 0;
@@ -48,13 +49,17 @@
 
 /*
 var test = new exports.WorkQueue(function(item,acc){
+  console.log('ACC is: ' + require('sys').inspect(acc));
   acc[''+item.count] = 'At item ' + item.count;
-  console.log(require('sys').inspect(acc));
   if(item.count < 20){
      setTimeout(function(){test.push({ 'count' : (item.count+1)});}, 1000); 
   }
   return acc;
 }, {});
+
+test.addListener('data', function(data){
+  console.log(require('sys').inspect(data));
+});
 
 test.push({ 'count' : 1});
 */
