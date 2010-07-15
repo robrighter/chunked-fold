@@ -1,4 +1,4 @@
-ChunkedFold is a simple object for folding/reducing a list that is constantly being appended. It is particularly useful for processing feeds. It has 2 objects:
+ChunkedFold is a simple tool for processing a list that is constantly being appended. It is particularly useful for processing feeds. It has 2 objects:
 
 (1) ChunkedFold
 ---------------
